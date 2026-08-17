@@ -13,16 +13,13 @@ public class historyDataFile {
             try {
                 file.createNewFile();
                 
+                //book1
                 list.add(new returnedBook(
                     "Snow Country", "Yasunari Kawabata", "9787544248662", "Literature", 1, "john", LocalDate.now().minusDays(20).toString(), LocalDate.now().minusDays(15).toString()
                 ));
-                // 2. Life Is Worth Living
+                //book2
                 list.add(new returnedBook(
                     "Life Is Worth Living", "Tsuneko Nakamura", "9787547734315", "Literature", 1, "john", LocalDate.now().minusDays(30).toString(), LocalDate.now().minusDays(22).toString()
-                ));
-                // 3. Summer, Fireworks, and My Corpse
-                list.add(new returnedBook(
-                    "Summer, Fireworks, and My Corpse", "Otsuichi", "9787544296274", "Mystery", 1, "john", LocalDate.now().minusDays(45).toString(), LocalDate.now().minusDays(40).toString()
                 ));
 
                 saveHistory(list);
