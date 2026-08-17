@@ -27,4 +27,20 @@ class BorrowedBook extends Book {
     public String getDueDate() {
         return dueDate;
     }
+
+    public void setBorrowerName(String borrowerName) {
+        this.borrowerName = borrowerName;
+    }
+
+    public void setBorrowDate(String borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public void setBorrowDays(int borrowDays) {
+        this.borrowDays = borrowDays;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
 }
