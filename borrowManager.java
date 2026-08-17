@@ -85,6 +85,19 @@ public class borrowManager {
         targetBook.setQuantity(targetBook.getQuantity() +1);
         borrowedBooks.remove(matchedBorrow);
 
+        ArrayList<returnedBook> historyList = historyDataFile.loadHistory();
+        historyList.add(new returnedBook(
+            matchedBorrow.getTitle(),
+            matchedBorrow.getAuthor(),
+            matchedBorrow.getIsbn(),
+            matchedBorrow.getCategory(),
+            1,
+            matchedBorrow.getBorrowerName(),
+            matchedBorrow.getBorrowDate(),
+            LocalDate.now().toString()
+        ));
+        historyDataFile.saveHistory(historyList);
+
         bookDataFile.saveBooks(bookMgr.bookList);
         borrowDataFile.saveBorrows(borrowedBooks);
 

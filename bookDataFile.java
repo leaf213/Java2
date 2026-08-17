@@ -22,7 +22,10 @@ public class bookDataFile {
                 new Book("Harry Potter Goblet of Fire", "J.K.Rowling", "0747550794", "Fantasy", 1),
                 new Book("Tsubaki Stationary Store", "Ito Ogawa", "9798217047314", "Literacture", 1),
                 new Book("Tsubaki Stationary Store", "Ito Ogawa", "9781529994865", "Literacture", 1),
-                new Book("Journey Under the mIdnight Sun", "Keigo Higashino", "9787544258609", "Fantasy", 2)
+                new Book("Journey Under the Midnight Sun", "Keigo Higashino", "9787544258609", "Fantasy", 2),
+                new Book("Snow Country", "Yasunari Kawabata", "9787544248662", "Literature", 2),
+                new Book("Life Is Worth Living", "Tsuneko Nakamura", "9787547734315", "Literature", 2),
+                new Book("Summer, Fireworks, and My Corpse", "Otsuichi", "9787544296274", "Mystery", 2)
             };
 
             for(Book b : books) {

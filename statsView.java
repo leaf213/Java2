@@ -40,42 +40,41 @@ public class statsView {
         statsGrid.add(lblCountTitle, 0, 1);
         statsGrid.add(lblCountVal, 1, 1);
 
-        TableView<borrowedBook> table = new TableView<>();
+        TableView<recordItem> table = new TableView<>();
         table.setPrefHeight(260);
         table.setStyle("-fx-font-family: 'Courier New';");
 
-        TableColumn<borrowedBook, String> colTitle = new TableColumn<>("Title");
+        TableColumn<recordItem, String> colTitle = new TableColumn<>("Title");
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colTitle.setPrefWidth(240);
 
-        TableColumn<borrowedBook, String> colIsbn = new TableColumn<>("ISBN");
+        TableColumn<recordItem, String> colIsbn = new TableColumn<>("ISBN");
         colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         colIsbn.setPrefWidth(150);
 
-        TableColumn<borrowedBook, String> colBorrowDate = new TableColumn<>("Borrow Date");
+        TableColumn<recordItem, String> colBorrowDate = new TableColumn<>("Borrow Date");
         colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
         colBorrowDate.setPrefWidth(150);
 
-        TableColumn<borrowedBook, String> colDueDate = new TableColumn<>("Due Date");
-        colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-        colDueDate.setPrefWidth(150);
+        TableColumn<recordItem, String> colReturnDate = new TableColumn<>("Return Date");
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        colReturnDate.setPrefWidth(150);
 
-        TableColumn<borrowedBook, Integer> colDays = new TableColumn<>("Days");
-        colDays.setCellValueFactory(new PropertyValueFactory<>("borrowDays"));
-        colDays.setPrefWidth(80);
+        TableColumn<recordItem, Integer> colQty = new TableColumn<>("Qty");
+        colQty.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colQty.setPrefWidth(80);
 
-        table.getColumns().addAll(colTitle, colIsbn, colBorrowDate, colDueDate, colDays);
+        table.getColumns().add(colTitle);
+        table.getColumns().add(colIsbn);
+        table.getColumns().add(colBorrowDate);
+        table.getColumns().add(colReturnDate);
+        table.getColumns().add(colQty);
 
         Label customPlaceholder = new Label("No borrowing history yet");
         customPlaceholder.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 14px; -fx-text-fill: #718096; -fx-font-weight: bold;");
         table.setPlaceholder(customPlaceholder);
 
-        Button btnRefresh = new Button("Refresh History");
-        btnRefresh.setStyle(btnStyle);
-        btnRefresh.setOnMouseEntered(e -> btnRefresh.setStyle(btnHoverStyle));
-        btnRefresh.setOnMouseExited(e -> btnRefresh.setStyle(btnStyle));
-
-        Runnable loadHistory = () -> {
+        Runnable loadRecords = () -> {
             String currentUser = project.loggedInUser == null ? "" : project.loggedInUser.trim();
             if (currentUser.isEmpty()) {
                 lblUserVal.setText("Not logged in");
@@ -86,29 +85,47 @@ public class statsView {
             }
 
             lblUserVal.setText(currentUser);
+            ArrayList<recordItem> combinedList = new ArrayList<>();
 
             borrowManager bm = new borrowManager();
-            ArrayList<borrowedBook> userBorrows = new ArrayList<>();
             for (borrowedBook bb : bm.borrowedBooks) {
                 if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(currentUser)) {
-                    userBorrows.add(bb);
+                    combinedList.add(new recordItem(
+                        bb.getTitle(),
+                        bb.getIsbn(),
+                        bb.getBorrowDate(),
+                        "Not Returned (Active)",
+                        1
+                    ));
                 }
             }
 
-            table.getItems().setAll(userBorrows);
-            lblCountVal.setText(String.valueOf(userBorrows.size()));
+            ArrayList<returnedBook> historyList = historyDataFile.loadHistory();
+            for (returnedBook hb : historyList) {
+                if (hb.getBorrowerName() != null && hb.getBorrowerName().trim().equalsIgnoreCase(currentUser)) {
+                    combinedList.add(new recordItem(
+                        hb.getTitle(),
+                        hb.getIsbn(),
+                        hb.getBorrowDate(),
+                        hb.getReturnDate(),
+                        hb.getQuantity()
+                    ));
+                }
+            }
 
-            if (userBorrows.isEmpty()) {
-                table.setPlaceholder(new Label("No borrowing history found for " + currentUser));
+            table.getItems().setAll(combinedList);
+            lblCountVal.setText(String.valueOf(combinedList.size()));
+
+            if (combinedList.isEmpty()) {
+                table.setPlaceholder(new Label("No records found for " + currentUser));
             } else {
                 table.setPlaceholder(new Label(""));
             }
         };
 
-        btnRefresh.setOnAction(e -> loadHistory.run());
-        loadHistory.run();
+        loadRecords.run();
 
-        container.getChildren().addAll(title, statsGrid, table, btnRefresh);
+        container.getChildren().addAll(title, statsGrid, table);
         return container;
     }
 }
