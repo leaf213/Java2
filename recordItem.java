@@ -1,11 +1,11 @@
-public class recordItem {
+public class RecordItem {
     private String title;
     private String isbn;
     private String borrowDate;
     private String returnDate;
     private int quantity;
 
-    public recordItem(String title, String isbn, String borrowDate, String returnDate, int quantity) {
+    public RecordItem(String title, String isbn, String borrowDate, String returnDate, int quantity) {
         this.title = title;
         this.isbn = isbn;
         this.borrowDate = borrowDate;

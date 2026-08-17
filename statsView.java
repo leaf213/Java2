@@ -40,27 +40,27 @@ public class statsView {
         statsGrid.add(lblCountTitle, 0, 1);
         statsGrid.add(lblCountVal, 1, 1);
 
-        TableView<recordItem> table = new TableView<>();
+        TableView<RecordItem> table = new TableView<>();
         table.setPrefHeight(260);
         table.setStyle("-fx-font-family: 'Courier New';");
 
-        TableColumn<recordItem, String> colTitle = new TableColumn<>("Title");
+        TableColumn<RecordItem, String> colTitle = new TableColumn<>("Title");
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colTitle.setPrefWidth(240);
 
-        TableColumn<recordItem, String> colIsbn = new TableColumn<>("ISBN");
+        TableColumn<RecordItem, String> colIsbn = new TableColumn<>("ISBN");
         colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         colIsbn.setPrefWidth(150);
 
-        TableColumn<recordItem, String> colBorrowDate = new TableColumn<>("Borrow Date");
+        TableColumn<RecordItem, String> colBorrowDate = new TableColumn<>("Borrow Date");
         colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
         colBorrowDate.setPrefWidth(150);
 
-        TableColumn<recordItem, String> colReturnDate = new TableColumn<>("Return Date");
+        TableColumn<RecordItem, String> colReturnDate = new TableColumn<>("Return Date");
         colReturnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         colReturnDate.setPrefWidth(150);
 
-        TableColumn<recordItem, Integer> colQty = new TableColumn<>("Qty");
+        TableColumn<RecordItem, Integer> colQty = new TableColumn<>("Qty");
         colQty.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         colQty.setPrefWidth(80);
 
@@ -85,12 +85,12 @@ public class statsView {
             }
 
             lblUserVal.setText(currentUser);
-            ArrayList<recordItem> combinedList = new ArrayList<>();
+            ArrayList<RecordItem> combinedList = new ArrayList<>();
 
             borrowManager bm = new borrowManager();
             for (BorrowedBook bb : bm.borrowedBooks) {
                 if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(currentUser)) {
-                    combinedList.add(new recordItem(
+                    combinedList.add(new RecordItem(
                         bb.getTitle(),
                         bb.getIsbn(),
                         bb.getBorrowDate(),
@@ -103,7 +103,7 @@ public class statsView {
             ArrayList<ReturnedBook> historyList = historyDataFile.loadHistory();
             for (ReturnedBook hb : historyList) {
                 if (hb.getBorrowerName() != null && hb.getBorrowerName().trim().equalsIgnoreCase(currentUser)) {
-                    combinedList.add(new recordItem(
+                    combinedList.add(new RecordItem(
                         hb.getTitle(),
                         hb.getIsbn(),
                         hb.getBorrowDate(),
