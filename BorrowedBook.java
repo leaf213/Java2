@@ -12,6 +12,7 @@ class BorrowedBook extends Book {
         this.dueDate = dueDate;
     }
 
+    // JavaBean-style getters required by JavaFX PropertyValueFactory
     public String getBorrowerName() {
         return borrowerName;
     }
@@ -26,5 +27,22 @@ class BorrowedBook extends Book {
 
     public String getDueDate() {
         return dueDate;
+    }
+
+    // Also provide setters for completeness (optional but recommended)
+    public void setBorrowerName(String borrowerName) {
+        this.borrowerName = borrowerName;
+    }
+
+    public void setBorrowDate(String borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public void setBorrowDays(int borrowDays) {
+        this.borrowDays = borrowDays;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 }

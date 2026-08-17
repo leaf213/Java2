@@ -37,16 +37,20 @@ public class returnView {
         colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         colIsbn.setPrefWidth(120);
 
+        // Fixed: Use capitalized property names to match JavaBean getter conventions
+        // BorrowDate -> getBorrowDate()
         TableColumn<BorrowedBook, String> colBorrowDate = new TableColumn<>("Borrow Date");
-        colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
+        colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("BorrowDate"));
         colBorrowDate.setPrefWidth(100);
 
+        // DueDate -> getDueDate()
         TableColumn<BorrowedBook, String> colDueDate = new TableColumn<>("Due Date");
-        colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        colDueDate.setCellValueFactory(new PropertyValueFactory<>("DueDate"));
         colDueDate.setPrefWidth(100);
 
+        // BorrowDays -> getBorrowDays()
         TableColumn<BorrowedBook, Integer> colDays = new TableColumn<>("Days");
-        colDays.setCellValueFactory(new PropertyValueFactory<>("borrowDays"));
+        colDays.setCellValueFactory(new PropertyValueFactory<>("BorrowDays"));
         colDays.setPrefWidth(70);
 
         table.getColumns().addAll(colTitle, colIsbn, colBorrowDate, colDueDate, colDays);

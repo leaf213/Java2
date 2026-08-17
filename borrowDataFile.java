@@ -29,7 +29,7 @@ public class borrowDataFile {
                     "Tsubaki Stationary Store", 
                     "Ito Ogawa", 
                     "9798217047314", 
-                    "Literacture", 
+                    "Literature", 
                     1, 
                     "john",                  
                     LocalDate.now().toString(),   
@@ -51,22 +51,28 @@ public class borrowDataFile {
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty()) continue;
-                String[] parts = line.split(",");
-                if (parts.length == 9) {
-                    String title = parts[0].trim();
-                    String author = parts[1].trim();
-                    String isbn = parts[2].trim();
-                    String category = parts[3].trim();
-                    int quantity = Integer.parseInt(parts[4].trim());
-                    String borrowerName = parts[5].trim();
-                    String borrowDate = parts[6].trim();
-                    int borrowDays = Integer.parseInt(parts[7].trim());
-                    String dueDate = parts[8].trim();
+                String[] parts = line.split(",", -1); // Use -1 to keep trailing empty strings
+                if (parts.length >= 9) {
+                    try {
+                        String title = parts[0].trim();
+                        String author = parts[1].trim();
+                        String isbn = parts[2].trim();
+                        String category = parts[3].trim();
+                        int quantity = Integer.parseInt(parts[4].trim());
+                        String borrowerName = parts[5].trim();
+                        String borrowDate = parts[6].trim();
+                        int borrowDays = Integer.parseInt(parts[7].trim());
+                        String dueDate = parts[8].trim();
 
-                    list.add(new BorrowedBook(title, author, isbn, category, quantity, borrowerName, borrowDate, borrowDays, dueDate));
+                        list.add(new BorrowedBook(title, author, isbn, category, quantity, borrowerName, borrowDate, borrowDays, dueDate));
+                    } catch (NumberFormatException e) {
+                        System.err.println("Skipping malformed line: " + line);
+                    }
+                } else {
+                    System.err.println("Skipping line with incorrect number of fields: " + line);
                 }
             }
-        } catch (IOException | NumberFormatException e) {
+        } catch (IOException e) {
             System.err.println("Error loading borrows data: " + e.getMessage());
         }
 

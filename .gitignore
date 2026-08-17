@@ -1,7 +1,39 @@
+```
+# Compiled files
 *.class
+
+# Dependencies
+lib/
+libs/
+jars/
+
+# Build artifacts
+build/
+dist/
+target/
 out/
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# OS files
 .DS_Store
-.vscode
-books_data.csv
-borrows_data.csv
-members_data.csv
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+```
