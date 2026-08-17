@@ -88,7 +88,7 @@ public class statsView {
             ArrayList<recordItem> combinedList = new ArrayList<>();
 
             borrowManager bm = new borrowManager();
-            for (borrowedBook bb : bm.borrowedBooks) {
+            for (BorrowedBook bb : bm.borrowedBooks) {
                 if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(currentUser)) {
                     combinedList.add(new recordItem(
                         bb.getTitle(),
@@ -100,8 +100,8 @@ public class statsView {
                 }
             }
 
-            ArrayList<returnedBook> historyList = historyDataFile.loadHistory();
-            for (returnedBook hb : historyList) {
+            ArrayList<ReturnedBook> historyList = historyDataFile.loadHistory();
+            for (ReturnedBook hb : historyList) {
                 if (hb.getBorrowerName() != null && hb.getBorrowerName().trim().equalsIgnoreCase(currentUser)) {
                     combinedList.add(new recordItem(
                         hb.getTitle(),

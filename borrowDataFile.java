@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class borrowDataFile {
     private static final String FILE_NAME = "borrows_data.csv";
 
-    public static ArrayList<borrowedBook> loadBorrows() {
-        ArrayList<borrowedBook> list = new ArrayList<>();
+    public static ArrayList<BorrowedBook> loadBorrows() {
+        ArrayList<BorrowedBook> list = new ArrayList<>();
         File file = new File(FILE_NAME);
 
         if (!file.exists()) {
             try {
                 file.createNewFile();
                 
-                borrowedBook initialBorrow1 = new borrowedBook(
+                BorrowedBook initialBorrow1 = new BorrowedBook(
                     "Harry Potter Philosopher Stone", 
                     "J.K.Rowling", 
                     "9780747532699", 
@@ -25,7 +25,7 @@ public class borrowDataFile {
                     LocalDate.now().plusDays(7).toString() 
                 );
 
-                borrowedBook initialBorrow2 = new borrowedBook(
+                BorrowedBook initialBorrow2 = new BorrowedBook(
                     "Tsubaki Stationary Store", 
                     "Ito Ogawa", 
                     "9798217047314", 
@@ -63,7 +63,7 @@ public class borrowDataFile {
                     int borrowDays = Integer.parseInt(parts[7].trim());
                     String dueDate = parts[8].trim();
 
-                    list.add(new borrowedBook(title, author, isbn, category, quantity, borrowerName, borrowDate, borrowDays, dueDate));
+                    list.add(new BorrowedBook(title, author, isbn, category, quantity, borrowerName, borrowDate, borrowDays, dueDate));
                 }
             }
         } catch (IOException | NumberFormatException e) {
@@ -73,9 +73,9 @@ public class borrowDataFile {
         return list;
     }
 
-    public static void saveBorrows(ArrayList<borrowedBook> list) {
+    public static void saveBorrows(ArrayList<BorrowedBook> list) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
-            for (borrowedBook b : list) {
+            for (BorrowedBook b : list) {
                 writer.println(b.getTitle() + ","
                         + b.getAuthor() + ","
                         + b.getIsbn() + ","

@@ -1,4 +1,4 @@
-public class returnedBook {
+public class ReturnedBook {
     private String title;
     private String author;
     private String isbn;
@@ -8,7 +8,7 @@ public class returnedBook {
     private String borrowDate;
     private String returnDate;
 
-    public returnedBook(String title, String author, String isbn, String category, int quantity, String borrowerName, String borrowDate, String returnDate) {
+    public ReturnedBook(String title, String author, String isbn, String category, int quantity, String borrowerName, String borrowDate, String returnDate) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;

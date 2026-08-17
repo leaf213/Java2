@@ -25,7 +25,7 @@ public class bookDataFile {
                 new Book("Journey Under the Midnight Sun", "Keigo Higashino", "9787544258609", "Fantasy", 2),
                 new Book("Snow Country", "Yasunari Kawabata", "9787544248662", "Literature", 2),
                 new Book("Life Is Worth Living", "Tsuneko Nakamura", "9787547734315", "Literature", 2),
-                new Book("Summer, Fireworks, and My Corpse", "Otsuichi", "9787544296274", "Mystery", 2)
+                new Book("Summer Fireworks and My Corpse", "Otsuichi", "9787544296274", "Mystery", 2)
             };
 
             for(Book b : books) {

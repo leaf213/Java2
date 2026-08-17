@@ -25,27 +25,27 @@ public class returnView {
         String labelStyle = "-fx-font-family: 'Courier New'; -fx-font-size: 14px; -fx-font-weight: bold;";
         String fldStyle = "-fx-font-family: 'Courier New'; -fx-font-size: 14px;";
 
-        TableView<borrowedBook> table = new TableView<>();
+        TableView<BorrowedBook> table = new TableView<>();
         table.setPrefHeight(220);
         table.setStyle("-fx-font-family: 'Courier New';");
 
-        TableColumn<borrowedBook, String> colTitle = new TableColumn<>("Title");
+        TableColumn<BorrowedBook, String> colTitle = new TableColumn<>("Title");
         colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-        colTitle.setPrefWidth(200);
+        colTitle.setPrefWidth(220);
 
-        TableColumn<borrowedBook, String> colIsbn = new TableColumn<>("ISBN");
+        TableColumn<BorrowedBook, String> colIsbn = new TableColumn<>("ISBN");
         colIsbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        colIsbn.setPrefWidth(130);
+        colIsbn.setPrefWidth(120);
 
-        TableColumn<borrowedBook, String> colBorrowDate = new TableColumn<>("Borrow Date");
+        TableColumn<BorrowedBook, String> colBorrowDate = new TableColumn<>("Borrow Date");
         colBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
-        colBorrowDate.setPrefWidth(120);
+        colBorrowDate.setPrefWidth(100);
 
-        TableColumn<borrowedBook, String> colDueDate = new TableColumn<>("Due Date");
+        TableColumn<BorrowedBook, String> colDueDate = new TableColumn<>("Due Date");
         colDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-        colDueDate.setPrefWidth(120);
+        colDueDate.setPrefWidth(100);
 
-        TableColumn<borrowedBook, Integer> colDays = new TableColumn<>("Days");
+        TableColumn<BorrowedBook, Integer> colDays = new TableColumn<>("Days");
         colDays.setCellValueFactory(new PropertyValueFactory<>("borrowDays"));
         colDays.setPrefWidth(70);
 
@@ -61,10 +61,10 @@ public class returnView {
         txtIsbn.setEditable(true);
 
         table.setRowFactory(e -> {
-            TableRow<borrowedBook> row = new TableRow<>();
+            TableRow<BorrowedBook> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getClickCount() == 1) {
-                    borrowedBook clickedBook = row.getItem();
+                    BorrowedBook clickedBook = row.getItem();
                     txtIsbn.setText(clickedBook.getIsbn());
                 }
             });
@@ -73,8 +73,8 @@ public class returnView {
 
         if (!project.loggedInUser.isEmpty()) {
             borrowManager bm = new borrowManager();
-            ArrayList<borrowedBook> userActiveBorrows = new ArrayList<>();
-            for (borrowedBook bb : bm.borrowedBooks) {
+            ArrayList<BorrowedBook> userActiveBorrows = new ArrayList<>();
+            for (BorrowedBook bb : bm.borrowedBooks) {
                 if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(project.loggedInUser)) {
                     userActiveBorrows.add(bb);
                 }
@@ -133,8 +133,8 @@ public class returnView {
                 borrowManager bm = new borrowManager();
 
                 String resultMsg = bm.returnBook(isbnInput, bookMgr);
-                ArrayList<borrowedBook> userActiveBorrows = new ArrayList<>();
-                for (borrowedBook bb : bm.borrowedBooks) {
+                ArrayList<BorrowedBook> userActiveBorrows = new ArrayList<>();
+                for (BorrowedBook bb : bm.borrowedBooks) {
                     if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(project.loggedInUser)) {
                         userActiveBorrows.add(bb);
                     }

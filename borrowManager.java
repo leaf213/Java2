@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class borrowManager {
-    public ArrayList <borrowedBook> borrowedBooks;
+    public ArrayList <BorrowedBook> borrowedBooks;
 
     public borrowManager() {
         this.borrowedBooks = borrowDataFile.loadBorrows();
@@ -46,7 +46,7 @@ public class borrowManager {
         String borrowDate = LocalDate.now().toString();
         String dueDate = LocalDate.now().plusDays(borrowDays).toString();
 
-        borrowedBooks.add(new borrowedBook(
+        borrowedBooks.add(new BorrowedBook(
             targetBook.getTitle(), targetBook.getAuthor(), targetBook.getIsbn(), targetBook.getCategory(), 1, borrowerName, borrowDate, borrowDays, dueDate
         ));
 
@@ -64,8 +64,8 @@ public class borrowManager {
             throw new borrowException("Error: ISBN field cannot be empty!");
         }
 
-        borrowedBook matchedBorrow = null;
-        for(borrowedBook bb : borrowedBooks) {
+        BorrowedBook matchedBorrow = null;
+        for(BorrowedBook bb : borrowedBooks) {
             if(bb.getIsbn().equals(isbn)) {
                 matchedBorrow = bb;
                 break;
@@ -85,8 +85,8 @@ public class borrowManager {
         targetBook.setQuantity(targetBook.getQuantity() +1);
         borrowedBooks.remove(matchedBorrow);
 
-        ArrayList<returnedBook> historyList = historyDataFile.loadHistory();
-        historyList.add(new returnedBook(
+        ArrayList<ReturnedBook> historyList = historyDataFile.loadHistory();
+        historyList.add(new ReturnedBook(
             matchedBorrow.getTitle(),
             matchedBorrow.getAuthor(),
             matchedBorrow.getIsbn(),
