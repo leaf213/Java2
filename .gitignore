@@ -2,3 +2,6 @@
 out/
 .DS_Store
 .vscode
+books_data.csv
+borrows_data.csv
+members_data.csv

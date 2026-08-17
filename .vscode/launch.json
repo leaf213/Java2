@@ -9,6 +9,14 @@
             "name": "project",
             "request": "launch",
             "mainClass": "project",
+            "projectName": "display-user-borrow-history-table_65c896ac",
+            "vmArgs": "--module-path \"C:/Users/User/OneDrive/文档/javafx-sdk-26.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "project",
+            "request": "launch",
+            "mainClass": "project",
             "projectName": "Java2_8b0ca951",
             "vmArgs": "--module-path \"C:/Users/User/OneDrive/文档/javafx-sdk-26.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
         },

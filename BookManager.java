@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class bookManager {
+class bookManager {
     public ArrayList <Book> bookList;
 
     public bookManager() {

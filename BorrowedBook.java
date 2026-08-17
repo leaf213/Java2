@@ -1,4 +1,4 @@
-public class borrowedBook extends Book {
+class borrowedBook extends Book {
     private String borrowerName;
     private String borrowDate;
     private int borrowDays;
