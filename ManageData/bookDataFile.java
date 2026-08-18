@@ -1,8 +1,11 @@
+package ManageData;
 import java.io.*;
 import java.util.ArrayList;
 
+import src.ClassFolder.Book;
+
 public class bookDataFile {
-    private static final String FILE_NAME = "books_data.csv";
+    private static final String FILE_NAME = "ManageData/data/books_data.csv";
     //load book data from csv file
     public static ArrayList<Book> loadBooks() {
         ArrayList<Book> bookList = new ArrayList<>();

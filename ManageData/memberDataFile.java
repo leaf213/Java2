@@ -1,13 +1,16 @@
+package ManageData;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import src.ClassFolder.Member;
+
 public class memberDataFile {
 
     // the file where the reader profiles are stored
-    private static final String FILE_NAME = "members_data.csv";
+    private static final String FILE_NAME = "ManageData/data/members_data.csv";
 
     public static Member[] loadMembers() {
         File file = new File(FILE_NAME);

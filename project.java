@@ -1,5 +1,8 @@
+
 import javafx.application.Application;
 import javafx.stage.Stage;
+import BorrowBook.bookManager;
+import ManageData.*;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.control.Button;
 
-public class project extends Application {
+public class Project extends Application {
     private bookManager bookManager = new bookManager();
 
     public static String loggedInUser = "";
@@ -27,7 +30,7 @@ public class project extends Application {
         //main menu
         //background part
         //background image
-        Image imagebgd = new Image("background.jpg");
+        Image imagebgd = new Image("src/img/background.jpg");
         ImageView imageView = new ImageView(imagebgd);
         imageView.setPreserveRatio(false);
 
@@ -53,7 +56,7 @@ public class project extends Application {
         topBar.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7);");
 
         //book icon image
-        Image bookIcon = new Image("book.png");
+        Image bookIcon = new Image("src/img/book.png");
         ImageView bookIconView = new ImageView(bookIcon);
         bookIconView.setFitWidth(45);
         bookIconView.setFitHeight(45);

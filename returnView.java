@@ -1,3 +1,4 @@
+
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -6,6 +7,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import src.ClassFolder.BorrowedBook;
+import BorrowBook.bookManager;
+import BorrowBook.borrowException;
+import BorrowBook.borrowManager;
+
 import java.util.ArrayList;
 
 public class returnView {
@@ -71,11 +77,11 @@ public class returnView {
             return row;
         });
 
-        if (!project.loggedInUser.isEmpty()) {
+        if (!Project.loggedInUser.isEmpty()) {
             borrowManager bm = new borrowManager();
             ArrayList<BorrowedBook> userActiveBorrows = new ArrayList<>();
             for (BorrowedBook bb : bm.borrowedBooks) {
-                if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(project.loggedInUser)) {
+                if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(Project.loggedInUser)) {
                     userActiveBorrows.add(bb);
                 }
             }
@@ -135,7 +141,7 @@ public class returnView {
                 String resultMsg = bm.returnBook(isbnInput, bookMgr);
                 ArrayList<BorrowedBook> userActiveBorrows = new ArrayList<>();
                 for (BorrowedBook bb : bm.borrowedBooks) {
-                    if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(project.loggedInUser)) {
+                    if (bb.getBorrowerName() != null && bb.getBorrowerName().trim().equalsIgnoreCase(Project.loggedInUser)) {
                         userActiveBorrows.add(bb);
                     }
                 }

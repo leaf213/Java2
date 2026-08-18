@@ -1,4 +1,5 @@
-class Member {
+package src.ClassFolder;
+public class Member {
 
     private String memberId;
     private String name;
@@ -35,7 +36,7 @@ class Member {
         return registerDate;
     }
 
-    public String displayInfo() {
+    String displayInfo() {
         return "Member ID: " + memberId
                 + "\nName: " + name
                 + "\nPhone: " + phone

@@ -1,5 +1,6 @@
+package BorrowBook;
 public class borrowException extends Exception {
-    public borrowException(String message) {
+    borrowException(String message) {
         super(message);
     }
 }

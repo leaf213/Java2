@@ -1,6 +1,10 @@
+package BorrowBook;
 import java.util.ArrayList;
 
-class bookManager {
+import ManageData.bookDataFile;
+import src.ClassFolder.Book;
+
+public class bookManager {
     public ArrayList <Book> bookList;
 
     public bookManager() {

@@ -1,3 +1,4 @@
+
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -6,7 +7,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
 import java.util.ArrayList;
+
+import src.ClassFolder.BorrowedBook;
+import src.ClassFolder.RecordItem;
+import src.ClassFolder.ReturnedBook;
+import BorrowBook.bookManager;
+import BorrowBook.borrowManager;
+import ManageData.historyDataFile;
 
 public class statsView {
     public static VBox createStatsView(bookManager bookManager, String btnStyle, String btnHoverStyle) {
@@ -75,7 +84,7 @@ public class statsView {
         table.setPlaceholder(customPlaceholder);
 
         Runnable loadRecords = () -> {
-            String currentUser = project.loggedInUser == null ? "" : project.loggedInUser.trim();
+            String currentUser = Project.loggedInUser == null ? "" : Project.loggedInUser.trim();
             if (currentUser.isEmpty()) {
                 lblUserVal.setText("Not logged in");
                 lblCountVal.setText("0");
