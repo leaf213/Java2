@@ -1,9 +1,18 @@
-import java.io.*;
+package ManageData;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import src.ClassFolder.BorrowedBook;
+
 public class borrowDataFile {
-    private static final String FILE_NAME = "borrows_data.csv";
+    private static final String FILE_NAME = "ManageData/data/borrows_data.csv";
 
     public static ArrayList<BorrowedBook> loadBorrows() {
         ArrayList<BorrowedBook> list = new ArrayList<>();
@@ -12,29 +21,29 @@ public class borrowDataFile {
         if (!file.exists()) {
             try {
                 file.createNewFile();
-                
+
                 BorrowedBook initialBorrow1 = new BorrowedBook(
-                    "Harry Potter Philosopher Stone", 
-                    "J.K.Rowling", 
-                    "9780747532699", 
-                    "Fantasy", 
-                    1, 
-                    "john",                  
-                    LocalDate.now().toString(),   
-                    7,                            
-                    LocalDate.now().plusDays(7).toString() 
+                    "Harry Potter Philosopher Stone",
+                    "J.K.Rowling",
+                    "9780747532699",
+                    "Fantasy",
+                    1,
+                    "john",
+                    LocalDate.now().toString(),
+                    7,
+                    LocalDate.now().plusDays(7).toString()
                 );
 
                 BorrowedBook initialBorrow2 = new BorrowedBook(
-                    "Tsubaki Stationary Store", 
-                    "Ito Ogawa", 
-                    "9798217047314", 
-                    "Literature", 
-                    1, 
-                    "john",                  
-                    LocalDate.now().toString(),   
-                    5,                            
-                    LocalDate.now().plusDays(5).toString() 
+                    "Tsubaki Stationary Store",
+                    "Ito Ogawa",
+                    "9798217047314",
+                    "Literature",
+                    1,
+                    "john",
+                    LocalDate.now().toString(),
+                    5,
+                    LocalDate.now().plusDays(5).toString()
                 );
 
                 list.add(initialBorrow1);
@@ -50,10 +59,13 @@ public class borrowDataFile {
             String line;
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
-                if (line.isEmpty()) continue;
+                if (line.isEmpty()) {
+                    continue;
+                }
+
                 String[] parts = line.split(",", -1);
                 if (parts.length >= 9) {
-                    try{
+                    try {
                         String title = parts[0].trim();
                         String author = parts[1].trim();
                         String isbn = parts[2].trim();
@@ -65,19 +77,19 @@ public class borrowDataFile {
                         String dueDate = parts[8].trim();
 
                         list.add(new BorrowedBook(title, author, isbn, category, quantity, borrowerName, borrowDate, borrowDays, dueDate));
-                    } catch(NumberFormatException e) {
+                    } catch (NumberFormatException e) {
                         System.err.println("Skipping malformed line: " + line);
                     }
-            } else {
-                System.err.println("Skipping line with incorrect number of fields: " + line);
+                } else {
+                    System.err.println("Skipping line with incorrect number of fields: " + line);
+                }
             }
-        } 
-    } catch (IOException e) {
+        } catch (IOException e) {
             System.err.println("Error loading borrows data: " + e.getMessage());
-    }
+        }
 
-    return list;
-}
+        return list;
+    }
 
     public static void saveBorrows(ArrayList<BorrowedBook> list) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {

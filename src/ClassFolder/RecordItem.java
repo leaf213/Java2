@@ -1,3 +1,4 @@
+package src.ClassFolder;
 public class RecordItem {
     private String title;
     private String isbn;

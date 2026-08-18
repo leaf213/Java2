@@ -1,5 +1,15 @@
+package BorrowBook;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import src.ClassFolder.Book;
+import src.ClassFolder.BorrowedBook;
+import src.ClassFolder.Member;
+import src.ClassFolder.ReturnedBook;
+import ManageData.bookDataFile;
+import ManageData.borrowDataFile;
+import ManageData.historyDataFile;
+import ManageData.memberDataFile;
 
 public class borrowManager {
     public ArrayList <BorrowedBook> borrowedBooks;
